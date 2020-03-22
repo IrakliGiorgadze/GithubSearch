@@ -1,33 +1,28 @@
-import React, { Component } from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class UserItem extends Component {
-    state = {
-        id: 'id',
-        login: 'IrakliGiorgadze',
-        avatar_url: 'https://avatars0.githubusercontent.com/u/14906572?s=460&u=233e7a6dc4552343d1fff260be01adb4876761d8&v=4',
-        html_url: 'https://github.com/IrakliGiorgadze',
-    };
+const UserItem = ({ user: { login, avatar_url, html_url }}) => {
 
-    render() {
-        const { login, avatar_url, html_url } = this.state;
+    return (
+        <div className="card text-center">
+            <img 
+                src={ avatar_url } 
+                className="round-img" 
+                style={{ width: '60px' }} 
+            />
+            <h3>{ login }</h3>
 
-        return (
-            <div className="card text-center">
-                <img 
-                    src={ avatar_url } 
-                    className="round-img" 
-                    style={{ width: '60px' }} 
-                />
-                <h3>{ login }</h3>
-
-                <div>
-                    <a href={ html_url } className="btn btn-dark btn-sm my-1">
-                        More
-                    </a>
-                </div>
+            <div>
+                <a href={ html_url } className="btn btn-dark btn-sm my-1">
+                    More
+                </a>
             </div>
-        )
-    }
-}
+         </div>
+    );
+};
+
+UserItem.propTypes = {
+    user: PropTypes.object.isRequired,
+};
 
 export default UserItem
